@@ -1,0 +1,13 @@
+fastapi
+pandas
+openpyxl
+matplotlib
+uvicorn
+python-multipart
+
+streamlit
+requests
+
+# This file is used to specify the Python packages required for the frontend application.
+# It is used by pip to install the necessary dependencies.
+# Ensure that the versions of these

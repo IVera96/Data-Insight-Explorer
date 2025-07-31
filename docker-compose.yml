@@ -1,0 +1,22 @@
+
+
+services:
+  api:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    networks:
+      - backend
+
+  webapp:
+    build: ./frontend
+    ports:
+      - "8501:8501"
+    depends_on:
+      - api
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
