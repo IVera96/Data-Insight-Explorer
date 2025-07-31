@@ -24,24 +24,24 @@ def get_backend_analysis(file_bytes):
         response.raise_for_status()  # Raises an exception for bad status codes (4xx or 5xx)
         return response.json()
     except requests.exceptions.RequestException as e:
-        st.error(f"Errore di comunicazione con il backend: {e}")
+        st.error(f"Error communicating with the backend: {e}")
         return None
 
 # --- UI LAYOUT ---
 st.title("📊 Data Insight Explorer")
-st.write("Carica un file CSV o XLSX per analizzare le statistiche.")
+st.write("Upload a CSV or XLSX file to analyze statistics.")
 
 # --- FILE UPLOADER ---
 uploaded_file = st.file_uploader(
-    "Scegli un file",
+    "Choose a file",
     type=["csv", "xlsx"],
-    help="I file caricati vengono elaborati in memoria e non vengono salvati."
+    help="Uploaded files are processed in memory and are not saved."
 )
 
 if uploaded_file is not None:
     # Check if this is a new file upload
     if uploaded_file.name != st.session_state.last_uploaded_filename:
-        with st.spinner("Elaborazione del nuovo file..."):
+        with st.spinner("Processing the new file..."):
             # Reset state for the new file
             st.session_state.last_uploaded_filename = uploaded_file.name
 
@@ -65,12 +65,12 @@ if st.session_state.analysis_results:
     results = st.session_state.analysis_results
     
     st.write("---")
-    st.header("Risultati dell'Analisi")
+    st.header("Analysis Results")
 
-    st.subheader("Statistiche Descrittive")
+    st.subheader("Descriptive Statistics")
     # The backend returns stats as a dict, convert to DataFrame for nice display
     stats_df = pd.DataFrame(results.get("stats", {}))
     st.dataframe(stats_df)
 
 else:
-    st.info("In attesa del caricamento di un file...")
+    st.info("Waiting for a file to be uploaded...")

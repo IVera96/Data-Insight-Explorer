@@ -4,7 +4,7 @@ from clean_data import clean_dataframe
 from statistics import create_statistics
 
 app = FastAPI(title='Data Processing API',
-              description='API per upload, pulizia e analisi dati')
+              description='API for uploading, cleaning and analyzing data')
 
 @app.post("/upload/")
 async def upload_file(file: UploadFile = File(...)):
