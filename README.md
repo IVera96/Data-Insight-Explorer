@@ -4,6 +4,7 @@
 A lightweight, containerized web app for uploading CSV files, cleaning the data, generating summary statistics, and visualizing quick insights — all powered by **FastAPI** and **Streamlit**.
 
 ![Application View](Webapp.PNG)
+>>>>>>> 167aa403abebd97f34900783d6577b6872b281b6
 ---
 
 ##  Features

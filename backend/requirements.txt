@@ -2,7 +2,11 @@ fastapi
 pandas
 openpyxl
 uvicorn
+<<<<<<< HEAD
 python-multipart
 
 matplotlib
 seaborn
+=======
+python-multipart
+>>>>>>> 167aa403abebd97f34900783d6577b6872b281b6
