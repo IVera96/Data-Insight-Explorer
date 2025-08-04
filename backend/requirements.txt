@@ -3,3 +3,6 @@ pandas
 openpyxl
 uvicorn
 python-multipart
+
+matplotlib
+seaborn

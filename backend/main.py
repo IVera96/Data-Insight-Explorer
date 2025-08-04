@@ -1,7 +1,8 @@
 from fastapi import FastAPI, UploadFile, File, HTTPException
 import pandas as pd
 from clean_data import clean_dataframe
-from statistics import create_statistics
+from app_statistics import create_statistics
+from visualisation import create_visualisation
 
 app = FastAPI(title='Data Processing API',
               description='API for uploading, cleaning and analyzing data')
@@ -11,13 +12,14 @@ async def upload_file(file: UploadFile = File(...)):
     if not file.filename.endswith(".csv"):
         raise HTTPException(status_code=400, detail="Only CSV files are supported.")
     try:
-        df = pd.read_csv(file.file)
+        # df = pd.read_csv(file.file)
+        df = pd.read_csv(file.file, encoding="utf-8")
+
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Error reading file: {e}")
 
     cleaned_df = clean_dataframe(df)
     stats = create_statistics(cleaned_df)
+    visualizations = create_visualisation(cleaned_df)
 
-    return {"stats": stats, "columns": list(cleaned_df.columns)}
-
-
+    return {"stats": stats, "columns": list(cleaned_df.columns), "visualizations": visualizations}
